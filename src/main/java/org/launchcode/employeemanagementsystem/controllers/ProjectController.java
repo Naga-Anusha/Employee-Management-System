@@ -13,4 +13,9 @@ public class ProjectController {
     public String index() {
         return "admin/index";
     }
+
+    @GetMapping("create")
+    public String renderCreateEvent() {
+        return "admin/create";
+    }
 }
