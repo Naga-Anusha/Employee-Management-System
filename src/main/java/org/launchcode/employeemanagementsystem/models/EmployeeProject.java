@@ -2,13 +2,18 @@ package org.launchcode.employeemanagementsystem.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
-
+@Entity
 public class EmployeeProject {
 
+    @Id
+    @GeneratedValue
     private int projectId;
 
     @NotBlank(message = "Project Name is required.")
