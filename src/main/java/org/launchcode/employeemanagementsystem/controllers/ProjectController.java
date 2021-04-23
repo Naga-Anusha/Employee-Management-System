@@ -1,9 +1,8 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
+import org.launchcode.employeemanagementsystem.models.EmployeeProject;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("admin")
@@ -15,7 +14,12 @@ public class ProjectController {
     }
 
     @GetMapping("create")
-    public String renderCreateEvent() {
+    public String renderCreateProject() {
         return "admin/create";
+    }
+
+    @PostMapping("create")
+    public String createProject(@ModelAttribute EmployeeProject employeeProject){
+        return "redirect:";
     }
 }
