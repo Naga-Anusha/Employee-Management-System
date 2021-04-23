@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HelloController {
+public class ProjectController {
 
     @GetMapping
     @ResponseBody
-
-    public String hello(){
+    public String index() {
         return "Hello World!";
     }
 }
