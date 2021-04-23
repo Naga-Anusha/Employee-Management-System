@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-
+<nav th:replace="fragments :: adminnavigation"></nav>
     <h1>Create Event</h1>
     <form action="/admin/create" method="post">
         <p th:text="${errorMsg}" style="color:red;"></p>

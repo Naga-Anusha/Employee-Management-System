@@ -2,18 +2,8 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-    <h1>Employee list</h1>
-    <ul>
-        <li>Employee1</li>
-        <li>Employee2</li>
-        <li>Employee3</li>
-        <li>Employee4</li>
-        <li>Employee5</li>
-        <li>Employee6</li>
-    </ul>
+<nav th:replace="fragments :: adminnavigation"></nav>
     <h1>All Projects</h1>
-
-
     <p th:unless="${projects} and ${projects.size()}">No Projects</p>
 
     <table class="table">

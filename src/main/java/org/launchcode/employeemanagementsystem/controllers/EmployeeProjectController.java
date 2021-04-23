@@ -18,6 +18,10 @@ public class EmployeeProjectController {
     private EmployeeProjectRepository employeeProjectRepository;
 
     @GetMapping
+    public String admin(){
+        return "admin/landingpage";
+    }
+    @GetMapping("project")
     public String index(Model model) {
         model.addAttribute("projects",employeeProjectRepository.findAll());
         return "admin/index";
@@ -38,6 +42,6 @@ public class EmployeeProjectController {
             return "admin/create";
         }
         employeeProjectRepository.save(newEmployeeProject);
-        return "redirect:";
+        return "redirect:/admin/project";
     }
 }
