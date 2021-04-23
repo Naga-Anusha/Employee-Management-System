@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+    <h1>Create Event</h1>
+    <form action="/admin/create" method="post">
+        <p th:text="${errorMsg}" style="color:red;"></p>
+        <div class="form-group">
+            <label>Project Name:<input type="text" th:field=${employeeProject.projectName} class="form-control"/></label>
+            <p class="error" th:errors="${employeeProject.projectName}"></p>
+        </div>
+        <div class="form-group">
+            <label>Project Manager:<input type="text" th:field=${employeeProject.projectManager} class="form-control"/></label>
+            <p class="error" th:errors="${employeeProject.projectManager}"></p>
+        </div>
+        <div class="form-group">
+            <label>Start Date:<input type="date" th:field=${employeeProject.startDate} class="form-control"/></label>
+            <p class="error" th:errors="${employeeProject.startDate}"></p>
+        </div>
+        <div class="form-group">
+            <label>End Date:<input type="date" th:field=${employeeProject.endDate} class="form-control"/></label>
+            <p class="error" th:errors="${employeeProject.endDate}"></p>
+        </div>
+        <div>
+            <input type="submit" value="Add Project" class="btn btn-success"/>
+        </div>
+
+    </form>
+
+</body>
+</html>
