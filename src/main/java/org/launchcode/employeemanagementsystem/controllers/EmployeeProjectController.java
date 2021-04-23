@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("admin")
 public class EmployeeProjectController {
@@ -16,7 +18,8 @@ public class EmployeeProjectController {
     private EmployeeProjectRepository employeeProjectRepository;
 
     @GetMapping
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("projects",employeeProjectRepository.findAll());
         return "admin/index";
     }
 
@@ -28,11 +31,11 @@ public class EmployeeProjectController {
     }
 
     @PostMapping("create")
-    public String createProject(@ModelAttribute EmployeeProject newEmployeeProject, Errors errors, Model model){
+    public String createProject(@ModelAttribute @Valid EmployeeProject newEmployeeProject, Errors errors, Model model){
         if(errors.hasErrors()){
             model.addAttribute("title", "Create Project");
             model.addAttribute("errorMsg","Bad data!");
-            return "events/create";
+            return "admin/create";
         }
         employeeProjectRepository.save(newEmployeeProject);
         return "redirect:";
