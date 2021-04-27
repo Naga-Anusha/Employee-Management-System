@@ -28,12 +28,12 @@ public class Employee {
     @Size(max = 500, message = "Address too long!")
     private String address;
 
-    @Size(min=10, max=10,message="Phone number must be 10 digits")
-    private int phoneNumber;
+    @Size(max=10,message= "Phone number must be less than 10")
+     private String phoneNumber;
 
     public Employee() {}
 
-    public Employee(String firstName, String lastName, String contactEmail, String address, int phoneNumber) {
+    public Employee(String firstName, String lastName, String contactEmail, String address, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactEmail = contactEmail;
@@ -78,11 +78,11 @@ public class Employee {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 }
