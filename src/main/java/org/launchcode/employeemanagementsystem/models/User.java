@@ -1,8 +1,7 @@
 package org.launchcode.employeemanagementsystem.models;
 
-import org.dom4j.tree.AbstractEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
