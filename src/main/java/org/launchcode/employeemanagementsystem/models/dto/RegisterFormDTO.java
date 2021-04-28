@@ -1,6 +1,6 @@
 package org.launchcode.employeemanagementsystem.models.dto;
 
-public class RegisterFormDTO extends LoginFormDTO{
+public class RegisterFormDTO extends LoginFormDTO {
 
     private String verifyPassword;
 
