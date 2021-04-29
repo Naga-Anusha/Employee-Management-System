@@ -2,17 +2,31 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-<nav th:replace="fragments :: adminnavigation"></nav>
-<div class="p-3 mb-2 bg-info text-black">
-<h1>Employee list</h1>
-<ul class="list-group">
-    <li class="list-group-item">Employee1</li>
-    <li class="list-group-item">Employee2</li>
-    <li class="list-group-item">Employee3</li>
-    <li class="list-group-item">Employee4</li>
-    <li class="list-group-item">Employee5</li>
-    <li class="list-group-item">Employee6</li>
-</ul>
+<nav th:replace="fragments :: navigation"></nav>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="p-3 mb-2 bg-light text-black">
+            <nav th:replace="fragments :: adminsidebar"></nav>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="p-3 mb-2 bg-light text-black">
+                <h1>Employee list</h1>
+                <ul class="list-group">
+                    <li class="list-group-item">Employee1</li>
+                    <li class="list-group-item">Employee2</li>
+                    <li class="list-group-item">Employee3</li>
+                    <li class="list-group-item">Employee4</li>
+                    <li class="list-group-item">Employee5</li>
+                    <li class="list-group-item">Employee6</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
 </div>
 </body>
 </html>

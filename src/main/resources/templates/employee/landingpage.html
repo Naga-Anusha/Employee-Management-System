@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+    <nav th:replace="fragments :: navigation"></nav>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="col-6" style="margin:100px">
+                <div class="p-3 mb-2 bg-light text-black">
+                <h1>My Details</h1>
+                <table class="table">
+                    <thead class="thead-dark" th:each="detail : ${details}">
+                    <tr>
+                        <td>Id</td>
+                        <td th:text="${detail.employeeId}"></td>
+                    </tr>
+                    <tr>
+                        <td>Employee FirstName</td>
+                        <td th:text="${detail.firstName}"></td>
+                    </tr>
+                    <tr>
+                        <td>Employee LastName</td>
+                        <td th:text="${detail.lastName}"></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td th:text="${detail.contactEmail}"></td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td th:text="${detail.address}"></td>
+                    </tr>
+                    <tr>
+                        <td>Phone no</td>
+                        <td th:text="${detail.phoneNumber}"></td>
+                    </tr>
+                    </thead>
+                </table>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

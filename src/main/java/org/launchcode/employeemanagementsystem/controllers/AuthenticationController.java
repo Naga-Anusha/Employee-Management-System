@@ -76,7 +76,7 @@ public class AuthenticationController {
             return "register";
         }
 
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword());
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getRole());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
@@ -117,7 +117,12 @@ public class AuthenticationController {
         }
 
         setUserInSession(request.getSession(), theUser);
-
+        if(loginFormDTO.getRole().equals("admin")){
+            return "admin/landingpage";
+        }
+        else if(loginFormDTO.getRole().equals("employee")){
+            return "employee/landingpage";
+        }
         return "redirect:";
     }
 
