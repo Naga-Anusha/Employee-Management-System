@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body>
-    <nav th:replace="fragments :: employeenavigation"></nav>
+    <nav th:replace="fragments :: employeeNavigation"></nav>
     <h1>Edit details</h1>
     <form action="/admin/edit" method="post">
         <p th:text="${errorMsg}" style="color:red;"></p>

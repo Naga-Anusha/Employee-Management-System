@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container">
+<body>
 
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div style="background-color:lightgray;border-right-style : solid;border-color:#0474bc">
+            <div class="col" style="margin-top:210px">
+                <div id="logo">
+                    <div class="logo">Ba<span>ndhan</span> Consultancy Services</div>
+                </div>
+            </div>
         </div>
-        <div class="col-6" style="margin:100px">
-            <div class="p-3 mb-2 bg-light text-black">
+        <div class="p-3 mb-2 bg-light text-black">
+            <div class="col" style="margin-top:100px;margin-left:150px">
             <h1>Login Form</h1>
 
             <form method="post">
@@ -35,8 +40,6 @@
 
             <p>Don't have an account? <a href="/register">Register for one.</a></p>
             </div>
-        </div>
-        <div class="col">
         </div>
     </div>
 </div>

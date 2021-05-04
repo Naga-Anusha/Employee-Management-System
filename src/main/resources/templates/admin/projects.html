@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: adminNavigation"></nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <div class="p-3 mb-2 bg-light text-black">
+
+                <p th:unless="${projects} and ${projects.size()}">No Projects</p>
+
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th>Id</th>
+                        <th>Project Name</th>
+                        <th>Project Manager</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="project : ${projects}">
+                        <td th:text="${project.projectId}"></td>
+                        <td th:text="${project.projectName}"></td>
+                        <td th:text="${project.projectManager}"></td>
+                        <td th:text="${project.startDate}"></td>
+                        <td th:text="${project.endDate}"></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+</body>
+</html>

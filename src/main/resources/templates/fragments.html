@@ -8,25 +8,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav th:fragment="navigation"  class="navbar navbar-dark bg-dark">
-               <span class="navbar-text">
-                Bandhan Consultancy Services
-                </span>
+
+    <nav th:fragment="adminNavigation">
+        <div id="navbar">
+            <div id="logo">
+                <div class="logo">Ba<span>ndhan</span> Consultancy Services</div>
+            </div>
+            <div id="links">
+                <a href="/admin">Employee List</a>
+                <a href="/admin/create">Add Project</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
     </nav>
 
-    <div th:fragment="employeesidebar">
-        <a class="nav-link" href = "/employee">Employee Details</a>
-        <a class="nav-link" href = "/employee/edit">Edit Personal Info</a>
-    </div>
+    <nav th:fragment="employeeNavigation">
+        <div id="employeenavbar">
+            <div id="employeelogo">
+                <div class="logo">Ba<span>ndhan</span> Consultancy Services</div>
+            </div>
+            <div id="employeelinks">
+                <a href="/employee">Employee Details</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
 
-    <div th:fragment="index" class= "center">
-        <a class="nav-link" href = "/login">Log In</a>
-        <a class="nav-link" href = "/register">Register</a>
-    </div>
-
-    <div th:fragment="adminsidebar">
-        <a class="nav-link" href = "/admin">Employees list</a>
-        <a class="nav-link" href = "/admin/create">Add Project</a>
-    </div>
 </body>
 </html>

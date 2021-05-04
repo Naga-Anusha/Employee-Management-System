@@ -83,14 +83,14 @@ public class AuthenticationController {
         return "redirect:";
     }
 
-    @GetMapping("/login")
+    @GetMapping
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
@@ -118,10 +118,10 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), theUser);
         if(loginFormDTO.getRole().equals("admin")){
-            return "admin/landingpage";
+            return "admin/landingPage";
         }
         else if(loginFormDTO.getRole().equals("employee")){
-            return "employee/landingpage";
+            return "employee/landingPage";
         }
         return "redirect:";
     }
@@ -129,6 +129,6 @@ public class AuthenticationController {
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return "redirect:/login";
+        return "redirect:";
     }
     }
