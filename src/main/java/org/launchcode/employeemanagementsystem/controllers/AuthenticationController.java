@@ -116,6 +116,14 @@ public class AuthenticationController {
             return "login";
         }
 
+        String role = loginFormDTO.getRole();
+
+        if (!theUser.isMatchingRole(role)) {
+            errors.rejectValue("role", "role.invalid", "Invalid role");
+            model.addAttribute("title", "Log In");
+            return "login";
+        }
+
         setUserInSession(request.getSession(), theUser);
         if(loginFormDTO.getRole().equals("admin")){
             return "admin/landingPage";

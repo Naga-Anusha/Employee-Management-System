@@ -35,5 +35,9 @@ public class User extends AbstractEntity {
         return encoder.matches(password, pwHash);
     }
 
+    public boolean isMatchingRole(String givenRole) {
+        return givenRole.equals(role);
+    }
+
 }
 
