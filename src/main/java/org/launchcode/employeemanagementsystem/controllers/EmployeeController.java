@@ -24,7 +24,7 @@ public class EmployeeController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("details",employeeRepository.findAll());
-        return "employee/index";
+        return "employee/landingPage";
     }
 
     @GetMapping("create")
