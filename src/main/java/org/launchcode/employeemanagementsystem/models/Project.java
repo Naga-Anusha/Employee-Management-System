@@ -7,10 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.Objects;
 @Entity
-public class EmployeeProject {
+public class Project {
 
     @Id
     @GeneratedValue
@@ -30,9 +29,9 @@ public class EmployeeProject {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private String endDate;
 
-    public EmployeeProject() { }
+    public Project() { }
 
-    public EmployeeProject(String projectName, String projectManager, String startDate,String endDate){
+    public Project(String projectName, String projectManager, String startDate, String endDate){
         this.projectName = projectName;
         this.projectManager = projectManager;
         this.startDate = startDate;
@@ -84,7 +83,7 @@ public class EmployeeProject {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EmployeeProject that = (EmployeeProject) o;
+        Project that = (Project) o;
         return projectId == that.projectId;
     }
 

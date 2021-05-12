@@ -2,7 +2,6 @@ package org.launchcode.employeemanagementsystem.controllers;
 
 import org.launchcode.employeemanagementsystem.data.EmployeeRepository;
 import org.launchcode.employeemanagementsystem.models.Employee;
-import org.launchcode.employeemanagementsystem.models.EmployeeProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

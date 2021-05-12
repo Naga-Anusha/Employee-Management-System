@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: adminNavigation"></nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="p-3 mb-2 bg-light text-black">
+                <form action="/admin/employee" method="post">
+                    <div class="form-group">
+                        <label>Id<input type="text"  name="id" class="form-control"/></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Name<input type="text"  name="username" class="form-control"/></label>
+                    </div>
+                    <div class="form-group">
+                        <label> Projects
+                            <select name="project">
+                                <option value="admin">Admin</option>
+                                <option value="employee">Employee</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>
+                        <input type="submit" value="Add" class="btn btn-success"/>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

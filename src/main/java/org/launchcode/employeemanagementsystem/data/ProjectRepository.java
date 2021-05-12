@@ -1,9 +1,9 @@
 package org.launchcode.employeemanagementsystem.data;
 
-import org.launchcode.employeemanagementsystem.models.EmployeeProject;
+import org.launchcode.employeemanagementsystem.models.Project;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeProjectRepository extends CrudRepository<EmployeeProject,Integer> {
+public interface ProjectRepository extends CrudRepository<Project,Integer> {
 }
