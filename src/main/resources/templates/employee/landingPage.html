@@ -7,19 +7,19 @@
         <div class="row">
             <div class="col-6">
                 <div class="p-3 mb-2 bg-light text-black">
-                <h1>My Details</h1>
+                <h1>Personal Information</h1>
                 <table class="table">
                     <thead class="thead-dark" th:each="detail : ${details}">
                     <tr>
                         <td>Id</td>
-                        <td th:text="${detail.employeeId}"></td>
+                        <td th:text="${detail.id}"></td>
                     </tr>
                     <tr>
-                        <td>Employee FirstName</td>
+                        <td>FirstName</td>
                         <td th:text="${detail.firstName}"></td>
                     </tr>
                     <tr>
-                        <td>Employee LastName</td>
+                        <td>LastName</td>
                         <td th:text="${detail.lastName}"></td>
                     </tr>
                     <tr>

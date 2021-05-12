@@ -8,8 +8,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Employee extends AbstractEntity{
+public class Employee{
 
+    @Id
+    @GeneratedValue
+    int id;
 
     @NotBlank(message = "First Name is required.")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
@@ -36,6 +39,10 @@ public class Employee extends AbstractEntity{
         this.contactEmail = contactEmail;
         this.address = address;
         this.phoneNumber = phoneNumber;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {

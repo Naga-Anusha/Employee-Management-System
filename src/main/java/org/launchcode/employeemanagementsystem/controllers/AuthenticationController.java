@@ -75,7 +75,17 @@ public class AuthenticationController {
             model.addAttribute("title", "Register");
             return "register";
         }
+//Condition for employees can't register as admin
 
+        if(registerFormDTO.getRole().equals("admin")) {
+            User existingRole = userRepository.findByRole(registerFormDTO.getRole());
+
+            if (existingRole != null && existingRole.getRole().equals("admin")) {
+                errors.rejectValue("role", "role.alreadyexists", "You cannot be admin");
+                model.addAttribute("title", "Register");
+                return "register";
+            }
+        }
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getRole());
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
@@ -115,7 +125,7 @@ public class AuthenticationController {
             model.addAttribute("title", "Log In");
             return "login";
         }
-
+//Condition for matching role while login
         String role = loginFormDTO.getRole();
 
         if (!theUser.isMatchingRole(role)) {
@@ -123,7 +133,7 @@ public class AuthenticationController {
             model.addAttribute("title", "Log In");
             return "login";
         }
-
+//Condition for login redirecting page based on role
         setUserInSession(request.getSession(), theUser);
         if(loginFormDTO.getRole().equals("admin")){
             model.addAttribute("employees",userRepository.findAll());

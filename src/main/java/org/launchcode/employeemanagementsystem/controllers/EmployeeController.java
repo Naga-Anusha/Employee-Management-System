@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -42,18 +39,21 @@ public class EmployeeController {
             model.addAttribute("errorMsg","Bad data!");
             return "employee/create";
         }
-        employeeRepository.save(newEmployee);
+        if(employeeRepository.findAll() == null){
+            employeeRepository.save(newEmployee);
+        }
         return "redirect:";
     }
 
     @GetMapping("edit")
-    public String editDetails(Model model){
-        model.addAttribute("employee",employeeRepository.findAll());
+    public String displayEditDetails(Model model){
+        model.addAttribute("employee",new Employee());
+        model.addAttribute("values",employeeRepository.findAll());
         return "employee/edit";
     }
 
     @PostMapping("edit")
-    public String editDetails(@ModelAttribute @Valid Employee newEmployee) {
+    public String ProcessEditDetails(@ModelAttribute @Valid Employee newEmployee) {
         employeeRepository.save(newEmployee);
         return "redirect:";
     }
