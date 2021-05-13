@@ -142,6 +142,7 @@ public class AuthenticationController {
             return "admin/landingPage";
         }
         else if(loginFormDTO.getRole().equals("employee")){
+            model.addAttribute("details",userRepository.findByUsername(loginFormDTO.getUsername()));
             return "employee/landingPage";
         }
         return "redirect:";
