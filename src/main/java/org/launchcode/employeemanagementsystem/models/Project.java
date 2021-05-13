@@ -9,11 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 @Entity
-public class Project {
-
-    @Id
-    @GeneratedValue
-    private int projectId;
+public class Project extends AbstractEntity{
 
     @NotBlank(message = "Project Name is required.")
     @Size(min = 3, max = 50, message = "Project name must be between 3 and 50 characters")
@@ -36,10 +32,6 @@ public class Project {
         this.projectManager = projectManager;
         this.startDate = startDate;
         this.endDate = endDate;
-    }
-
-    public int getProjectId() {
-        return projectId;
     }
 
     public String getProjectName() {
@@ -79,16 +71,4 @@ public class Project {
         return projectName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Project that = (Project) o;
-        return projectId == that.projectId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(projectId);
-    }
 }

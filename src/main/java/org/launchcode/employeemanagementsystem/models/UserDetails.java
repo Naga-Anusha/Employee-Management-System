@@ -1,18 +1,14 @@
 package org.launchcode.employeemanagementsystem.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Employee{
-
-    @Id
-    @GeneratedValue
-    int id;
+public class UserDetails extends AbstractEntity{
 
     @NotBlank(message = "First Name is required.")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
@@ -31,18 +27,20 @@ public class Employee{
     @Size(max=10,message= "Phone number must be less than 10")
     private String phoneNumber;
 
-    public Employee() { }
+//    @ManyToOne
+//    private Project project;
+    @OneToOne(mappedBy = "userDetails")
+    private User user;
 
-    public Employee(String firstName, String lastName, String contactEmail, String address, String phoneNumber) {
+    public UserDetails() { }
+
+    public UserDetails(String firstName, String lastName, String contactEmail, String address, String phoneNumber, Project project) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactEmail = contactEmail;
         this.address = address;
         this.phoneNumber = phoneNumber;
-    }
-
-    public int getId() {
-        return id;
+        //this.project = project;
     }
 
     public String getFirstName() {
@@ -85,4 +83,15 @@ public class Employee{
         this.phoneNumber = phoneNumber;
     }
 
+//    public Project getProject() { return project; }
+//
+//    public void setProject(Project project) { this.project = project; }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

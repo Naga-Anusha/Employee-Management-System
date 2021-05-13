@@ -1,6 +1,7 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
 import org.launchcode.employeemanagementsystem.data.UserRepository;
+import org.launchcode.employeemanagementsystem.models.UserDetails;
 import org.launchcode.employeemanagementsystem.models.User;
 import org.launchcode.employeemanagementsystem.models.dto.LoginFormDTO;
 import org.launchcode.employeemanagementsystem.models.dto.RegisterFormDTO;
@@ -46,12 +47,13 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String displayRegistrationForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
+        model.addAttribute(new UserDetails());
         model.addAttribute("title", "Register");
         return "register";
     }
 
     @PostMapping("/register")
-    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,
+    public String processRegistrationForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO,@ModelAttribute @Valid UserDetails userDetails,
                                           Errors errors, HttpServletRequest request,
                                           Model model) {
 
@@ -86,7 +88,7 @@ public class AuthenticationController {
                 return "register";
             }
         }
-        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getRole());
+        User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getRole(),userDetails);
         userRepository.save(newUser);
         setUserInSession(request.getSession(), newUser);
 
