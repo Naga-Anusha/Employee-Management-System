@@ -5,6 +5,7 @@ import org.launchcode.employeemanagementsystem.data.ProjectRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
 import org.launchcode.employeemanagementsystem.models.EmployeeProject;
 import org.launchcode.employeemanagementsystem.models.Project;
+import org.launchcode.employeemanagementsystem.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,13 +67,18 @@ public class AdminController {
 
     @PostMapping("employee")
     public String processEmployeeProjectForm(@ModelAttribute @Valid EmployeeProject newEmployeeProject,
-                                             Errors errors, Model model, @RequestParam int projectId){
+                                             Errors errors, Model model, @RequestParam int projectId,@RequestParam int id){
         Optional<Project> optProject = projectRepository.findById(projectId);
         if(optProject.isPresent()) {
             Project project = optProject.get();
             newEmployeeProject.setProject(project);
-            employeeProjectRepository.save(newEmployeeProject);
         }
+        Optional<User> optUser = userRepository.findById(id);
+        if(optUser.isPresent()){
+            User user = optUser.get();
+            newEmployeeProject.setUser(user);
+        }
+        employeeProjectRepository.save(newEmployeeProject);
         return "redirect:";
     }
 }
