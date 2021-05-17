@@ -1,7 +1,9 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
+import org.launchcode.employeemanagementsystem.data.EmployeeProjectRepository;
 import org.launchcode.employeemanagementsystem.data.ProjectRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
+import org.launchcode.employeemanagementsystem.models.EmployeeProject;
 import org.launchcode.employeemanagementsystem.models.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("admin")
@@ -20,6 +23,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EmployeeProjectRepository employeeProjectRepository;
 
     @GetMapping
     public String admin(Model model)
@@ -56,5 +62,17 @@ public class AdminController {
         model.addAttribute("employee",userRepository.findByUsername(username));
         model.addAttribute("projects",projectRepository.findAll());
         return "admin/assignProject";
+    }
+
+    @PostMapping("employee")
+    public String processEmployeeProjectForm(@ModelAttribute @Valid EmployeeProject newEmployeeProject,
+                                             Errors errors, Model model, @RequestParam int projectId){
+        Optional<Project> optProject = projectRepository.findById(projectId);
+        if(optProject.isPresent()) {
+            Project project = optProject.get();
+            newEmployeeProject.setProject(project);
+            employeeProjectRepository.save(newEmployeeProject);
+        }
+        return "redirect:";
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -58,5 +59,6 @@ public class User extends AbstractEntity {
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
     }
+
 }
 

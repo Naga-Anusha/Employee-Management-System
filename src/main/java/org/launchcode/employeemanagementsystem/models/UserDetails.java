@@ -27,8 +27,6 @@ public class UserDetails extends AbstractEntity{
     @Size(max=10,message= "Phone number must be less than 10")
     private String phoneNumber;
 
-//    @ManyToOne
-//    private Project project;
     @OneToOne(mappedBy = "userDetails")
     private User user;
 
@@ -83,9 +81,9 @@ public class UserDetails extends AbstractEntity{
         this.phoneNumber = phoneNumber;
     }
 
-//    public Project getProject() { return project; }
-//
-//    public void setProject(Project project) { this.project = project; }
+   // public Project getProject() { return project; }
+
+   // public void setProject(Project project) { this.project = project; }
 
     public User getUser() {
         return user;
