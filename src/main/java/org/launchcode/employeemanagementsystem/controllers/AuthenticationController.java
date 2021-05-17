@@ -129,7 +129,6 @@ public class AuthenticationController {
         }
 //Condition for matching role while login
         String role = loginFormDTO.getRole();
-
         if (!theUser.isMatchingRole(role)) {
             errors.rejectValue("role", "role.invalid", "Invalid role");
             model.addAttribute("title", "Log In");

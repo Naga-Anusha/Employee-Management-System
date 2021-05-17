@@ -51,9 +51,9 @@ public class AdminController {
         return "redirect:/admin/project";
     }
 
-    @GetMapping("employee/{id}")
-    public String addEmployeeProjectForm(Model model,@PathVariable int id) {
-        model.addAttribute("employee",userRepository.findById(id));
+    @GetMapping("employee/{username}")
+    public String addEmployeeProjectForm(Model model,@PathVariable String username) {
+        model.addAttribute("employee",userRepository.findByUsername(username));
         model.addAttribute("projects",projectRepository.findAll());
         return "admin/assignProject";
     }

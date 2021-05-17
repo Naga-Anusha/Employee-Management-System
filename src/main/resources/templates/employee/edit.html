@@ -9,30 +9,31 @@
             <div class="col-6">
                 <div class="p-3 mb-2 bg-light text-black">
                     <h1>Edit details</h1>
-                    <form action="/admin/edit" method="post" th:each="value : ${values}">
+                    <form action="/employee/edit" method="post">
                         <p th:text="${errorMsg}" style="color:red;"></p>
+                        <input type="hidden" th:value="${employee.username}" name="username" />
                         <div class="form-group">
-                            <label>First Name:<input type="text" th:field=${employee.firstName} th:value=${value.firstName} class="form-control"/></label>
-                            <p class="error" th:errors="${employee.firstName}"></p>
+                            <label>First Name:<input type="text" th:field=${employee.userDetails.firstName} th:value=${employee.userDetails.firstName} class="form-control"/></label>
+                            <p class="error" th:errors="${employee.userDetails.firstName}"></p>
                         </div>
                         <div class="form-group">
-                            <label>Last Name:<input type="text" th:field=${employee.lastName} th:value=${value.lastName} class="form-control"/></label>
-                            <p class="error" th:errors="${employee.lastName}"></p>
+                            <label>Last Name:<input type="text" th:field=${employee.userDetails.lastName} th:value=${employee.userDetails.lastName} class="form-control"/></label>
+                            <p class="error" th:errors="${employee.userDetails.lastName}"></p>
                         </div>
                         <div class="form-group">
-                            <label>Email:<input type="text" th:field=${employee.contactEmail} th:value=${value.contactEmail} class="form-control"/></label>
-                            <p class="error" th:errors="${employee.contactEmail}"></p>
+                            <label>Email:<input type="text" th:field=${employee.userDetails.contactEmail} th:value=${employee.userDetails.contactEmail} class="form-control"/></label>
+                            <p class="error" th:errors="${employee.userDetails.contactEmail}"></p>
                         </div>
                         <div class="form-group">
-                            <label>Address:<input type="text" th:field=${employee.address} th:value=${value.address} class="form-control"/></label>
-                            <p class="error" th:errors="${employee.address}"></p>
+                            <label>Address:<input type="text" th:field=${employee.userDetails.address} th:value=${employee.userDetails.address} class="form-control"/></label>
+                            <p class="error" th:errors="${employee.userDetails.address}"></p>
                         </div>
                         <div class="form-group">
-                            <label>Phone Number:<input type="text" th:field=${employee.phoneNumber} th:value=${value.phoneNumber} class="form-control"/></label>
-                            <p class="error" th:errors="${employee.phoneNumber}"></p>
+                            <label>Phone Number:<input type="text" th:field=${employee.userDetails.phoneNumber} th:value=${employee.userDetails.phoneNumber} class="form-control"/></label>
+                            <p class="error" th:errors="${employee.userDetails.phoneNumber}"></p>
                         </div>
                         <div>
-                            <input type="submit" value="Update" class="btn btn-success"/>
+                            <input type="submit" value="Edit" class="btn btn-success"/>
                         </div>
 
                     </form>
