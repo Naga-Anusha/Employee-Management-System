@@ -8,10 +8,13 @@
         <div class="col-6">
             <div class="p-3 mb-2 bg-light text-black">
                 <h1>Employee list</h1>
-                <ul class="list-group"  th:each="employee : ${employees}">
-                    <li class="list-group-item" th:if="${employee.role.equals('employee')}"><a th:href="@{'/admin/view/' + ${employee.username}}"  th:text="${employee.username}"></a></li>
-                </ul>
-            </div>
+                <table class="table" th:each="employee : ${employees}"  th:if="${employee.role.equals('employee')}">
+                    <tr>
+                        <td><a th:href="@{'/admin/view/' + ${employee.username}}"  th:text="${employee.username}"></a></td>
+                        <td><a th:href="@{'/admin/performance/'+${employee.username}}">Add Performance</a></td>
+                    </tr>
+                </table>
+                </div>
         </div>
         <div class="col">
         </div>

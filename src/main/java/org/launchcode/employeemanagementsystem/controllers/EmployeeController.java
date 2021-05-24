@@ -38,12 +38,15 @@ public class EmployeeController {
     }
 
     @PostMapping("edit")
-    public String ProcessEditDetails(@RequestParam int id,@ModelAttribute @Valid UserDetails userDetails) {
-        System.out.println(id);
-        System.out.println(userDetails);
+    public String ProcessEditDetails(@RequestParam int id,@RequestParam String firstName,@RequestParam String lastName,@RequestParam String contactEmail,@RequestParam String address,@RequestParam String phoneNumber,@ModelAttribute @Valid UserDetails userDetails) {
         Optional<UserDetails> myUser = userDetailsRepository.findById(id);
         if (myUser.isPresent()) {
             UserDetails editedUser = (UserDetails) myUser.get();
+            editedUser.setFirstName(firstName);
+            editedUser.setLastName(lastName);
+            editedUser.setContactEmail(contactEmail);
+            editedUser.setAddress(address);
+            editedUser.setPhoneNumber(phoneNumber);
             userDetailsRepository.save(editedUser);
         }
 

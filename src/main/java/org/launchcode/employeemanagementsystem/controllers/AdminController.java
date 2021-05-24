@@ -93,4 +93,23 @@ public class AdminController {
         model.addAttribute("employeeProjects",employeeProjectRepository.findAll());
         return "admin/remove";
     }
+
+    @PostMapping("remove")
+    public String processRemoveEmployee(@RequestParam(required = false) int[] id){
+        if(id != null){
+            for(int employeeProject : id){
+                employeeProjectRepository.deleteById(employeeProject);
+            }
+
+
+        }
+        return "redirect:";
+    }
+
+    @GetMapping("performance/{username}")
+        public String addPerformance(@PathVariable String username){
+
+            return "admin/performance";
+        }
+
 }
