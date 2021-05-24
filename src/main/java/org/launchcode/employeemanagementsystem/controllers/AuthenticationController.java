@@ -1,5 +1,6 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
+import org.launchcode.employeemanagementsystem.data.UserDetailsRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
 import org.launchcode.employeemanagementsystem.models.UserDetails;
 import org.launchcode.employeemanagementsystem.models.User;
@@ -23,6 +24,9 @@ public class AuthenticationController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserDetailsRepository userDetailsRepository;
 
     private static final String userSessionKey = "user";
 
@@ -90,6 +94,8 @@ public class AuthenticationController {
         }
         User newUser = new User(registerFormDTO.getUsername(), registerFormDTO.getPassword(), registerFormDTO.getRole(),userDetails);
         userRepository.save(newUser);
+        userDetailsRepository.save(newUser.getUserDetails());
+
         setUserInSession(request.getSession(), newUser);
 
         return "redirect:";

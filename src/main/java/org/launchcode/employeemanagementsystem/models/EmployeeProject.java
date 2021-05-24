@@ -9,7 +9,7 @@ public class EmployeeProject extends AbstractEntity{
     @ManyToOne
     private Project project;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
     public EmployeeProject() { }

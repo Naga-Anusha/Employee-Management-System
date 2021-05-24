@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: adminNavigation"></nav>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="p-3 mb-2 bg-light text-black">
+
+                <table class="table">
+                    <tr>
+                        <th>Employee Id</th>
+                        <td th:text="${employee.id}"></td>
+                    </tr>
+                    <tr>
+                        <th>Employee Name</th>
+                        <td th:text="${employee.username}"></td>
+                    </tr>
+                    <tr th:each="project:${employeeProject}" th:if="${project.user.id == employee.id}">
+                        <th>Project Id</th>
+                        <td th:text="${project.id}"></td>
+                        <th>Project Name</th>
+                        <td th:text="${project.project.projectName}"></td>
+                        <th>Project Manager</th>
+                        <td th:text="${project.project.projectManager}"></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
+import org.launchcode.employeemanagementsystem.data.UserDetailsRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
 import org.launchcode.employeemanagementsystem.models.User;
 import org.launchcode.employeemanagementsystem.models.UserDetails;
@@ -19,27 +20,33 @@ public class EmployeeController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    UserDetailsRepository userDetailsRepository;
+
 
     @GetMapping
     public String index(Model model) {
-
+       // model.addAttribute("details",userDetailsRepository.findById(id));
         return "employee/landingPage";
     }
 
-    @GetMapping("edit/{username}")
-    public String displayEditDetails(Model model, @PathVariable String username){
-       // model.addAttribute(new User());
-        model.addAttribute("employee",userRepository.findByUsername(username));
+    @GetMapping("edit/{id}")
+    public String displayEditDetails(Model model, @PathVariable String id){
+        model.addAttribute(new User());
+        model.addAttribute("employee",userRepository.findByUsername(id));
         return "employee/edit";
     }
 
     @PostMapping("edit")
-    public String ProcessEditDetails(@ModelAttribute @Valid User user,Model model) {
-        Optional<User> myUser = userRepository.findById(user.getId());
+    public String ProcessEditDetails(@RequestParam int id,@ModelAttribute @Valid UserDetails userDetails) {
+        System.out.println(id);
+        System.out.println(userDetails);
+        Optional<UserDetails> myUser = userDetailsRepository.findById(id);
         if (myUser.isPresent()) {
-            User editedUser = (User) myUser.get();
-            userRepository.save(editedUser);
+            UserDetails editedUser = (UserDetails) myUser.get();
+            userDetailsRepository.save(editedUser);
         }
+
         return "redirect:";
     }
 }

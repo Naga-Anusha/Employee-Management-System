@@ -8,19 +8,18 @@
     <div class="row">
         <div class="col-6">
             <div class="p-3 mb-2 bg-light text-black">
-                <form action="/admin/employee" method="post">
-                    <input type="hidden"  name="id" th:value="${employee.id}" class="form-control"/>
+                <form action="/admin/assignProject" method="post">
 
                     <table class="table">
                         <tr>
-                            <th>Employee Id</th>
-                            <td th:text="${employee.userDetails.id}"></td>
+                            <th> Employee</th>
+                            <td><select name="id">
+                                <option th:each="user : ${users}"
+                                        th:value="${user.id}"
+                                        th:text="${user.username}"
+                                ></option>
+                            </select></td>
                         </tr>
-                        <tr>
-                            <th>Employee Name</th>
-                            <td th:text="${employee.userDetails.firstName}"></td>
-                        </tr>
-
                         <tr>
                         <th> Project</th>
                             <td><select name="projectId">
