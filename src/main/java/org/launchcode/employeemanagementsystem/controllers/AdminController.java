@@ -87,4 +87,10 @@ public class AdminController {
         model.addAttribute("employeeProject",employeeProjectRepository.findAll());
         return "admin/employeeProjects";
     }
+
+    @GetMapping("remove")
+    public String displayRemoveEmployee(Model model) {
+        model.addAttribute("employeeProjects",employeeProjectRepository.findAll());
+        return "admin/remove";
+    }
 }

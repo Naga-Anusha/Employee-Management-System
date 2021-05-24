@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: adminNavigation"></nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <div class="p-3 mb-2 bg-light text-black">
+            <form method="post" action="admin/remove">
+
+                <table class="table" th:each="employeeProject : ${employeeProjects}">
+                    <tr>
+                        <td th:text="${employeeProject.user.username}"></td>
+                        <td th:text="${employeeProject.project.projectName}"></td>
+                        <td><input type="checkbox" name="id" th:value="${employeeProject.id}" class="form-control"></td>
+                    </tr>
+                </table>
+
+                <input type="submit" value="Remove Employee" class="btn btn-danger">
+            </form>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
