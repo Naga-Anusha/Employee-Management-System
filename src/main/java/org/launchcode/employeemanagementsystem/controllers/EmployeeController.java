@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 
@@ -25,8 +26,10 @@ public class EmployeeController {
 
 
     @GetMapping
-    public String index(Model model) {
-       // model.addAttribute("details",userDetailsRepository.findById(id));
+    public String index(Model model, HttpSession session) {
+        String sessionId = session.getId();
+        int id = Integer.parseInt(sessionId);
+        model.addAttribute("details",userRepository.findById(id));
         return "employee/landingPage";
     }
 

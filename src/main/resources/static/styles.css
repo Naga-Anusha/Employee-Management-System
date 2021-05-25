@@ -11,7 +11,7 @@ body {
   display: grid;
   min-height: 100px;
   grid-auto-flow: column;
-  background-color: lightgray;
+  background-color: #f2f2f2;
   grid-gap: 1.5em;
   padding: 0 40px;
   -webkit-box-shadow: -1px 4px 5px 0px rgba(209, 205, 209, 1);
@@ -23,7 +23,7 @@ body {
   display: grid;
   min-height: 100px;
   grid-auto-flow: column;
-  background-color: lightgray;
+  background-color: #f2f2f2;
   grid-gap: 1.5em;
   padding: 0 40px;
   -webkit-box-shadow: -1px 4px 5px 0px rgba(209, 205, 209, 1);
@@ -88,6 +88,6 @@ a:hover {
 margin : 50px;
 }
 
-.p-3 mb-2 bg-info text-black {
-background-color : violet
+.col-6 {
+background-color : #f2f2f2
 }

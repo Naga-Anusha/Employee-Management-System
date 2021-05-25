@@ -98,17 +98,17 @@ public class AuthenticationController {
 
         setUserInSession(request.getSession(), newUser);
 
-        return "redirect:";
+        return "redirect:/login";
     }
 
-    @GetMapping
+    @GetMapping("login")
     public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "login";
     }
 
-    @PostMapping
+    @PostMapping("login")
     public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO,
                                    Errors errors, HttpServletRequest request,
                                    Model model) {
@@ -150,12 +150,12 @@ public class AuthenticationController {
             model.addAttribute("details",userRepository.findByUsername(loginFormDTO.getUsername()));
             return "employee/landingPage";
         }
-        return "redirect:";
+        return "redirect:/login";
     }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
-        return "redirect:";
+        return "redirect:/login";
     }
     }

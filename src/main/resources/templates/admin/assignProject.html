@@ -15,6 +15,7 @@
                             <th> Employee</th>
                             <td><select name="id">
                                 <option th:each="user : ${users}"
+                                        th:if="${user.role.equals('employee')}"
                                         th:value="${user.id}"
                                         th:text="${user.username}"
                                 ></option>
@@ -37,6 +38,7 @@
             </div>
         </div>
         <div class="col">
+
         </div>
     </div>
 </div>
