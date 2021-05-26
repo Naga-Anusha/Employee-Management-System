@@ -1,6 +1,5 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.launchcode.employeemanagementsystem.data.UserDetailsRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
 import org.launchcode.employeemanagementsystem.models.User;
@@ -8,13 +7,9 @@ import org.launchcode.employeemanagementsystem.models.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -42,7 +37,6 @@ public class EmployeeController {
         }
 
         User loggedUser =  user.get();
-        //model.addAttribute("details",userRepository.findByUsername(loginFormDTO.getUsername()));
         model.addAttribute("details",userRepository.findByUsername(loggedUser.getUsername()));
         return "employee/landingPage";
     }
@@ -68,5 +62,9 @@ public class EmployeeController {
         }
 
         return "redirect:";
+    }
+    @GetMapping("assignments")
+    public String displayAssignments(){
+        return "employee/assignments";
     }
 }
