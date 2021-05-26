@@ -38,7 +38,6 @@ public class UserDetails extends AbstractEntity{
         this.contactEmail = contactEmail;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        //this.project = project;
     }
 
     public String getFirstName() {

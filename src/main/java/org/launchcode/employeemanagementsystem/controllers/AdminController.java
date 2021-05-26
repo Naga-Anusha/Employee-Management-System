@@ -107,7 +107,8 @@ public class AdminController {
     }
 
     @GetMapping("performance")
-        public String addPerformance(){
+        public String addPerformance(Model model){
+        model.addAttribute("users",userRepository.findAll());
             return "admin/performance";
         }
 

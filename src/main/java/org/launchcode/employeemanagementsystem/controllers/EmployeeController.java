@@ -1,6 +1,7 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
 import org.launchcode.employeemanagementsystem.data.AssignmentsRepository;
+import org.launchcode.employeemanagementsystem.data.EmployeeProjectRepository;
 import org.launchcode.employeemanagementsystem.data.UserDetailsRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
 import org.launchcode.employeemanagementsystem.models.Assignments;
@@ -26,6 +27,9 @@ public class EmployeeController {
 
     @Autowired
     AssignmentsRepository assignmentsRepository;
+
+    @Autowired
+    EmployeeProjectRepository employeeProjectRepository;
 
     private static final String userSessionKey = "user";
 
@@ -73,14 +77,38 @@ public class EmployeeController {
         return "redirect:";
     }
     @GetMapping("assignments")
-    public String displayAssignments(){
+    public String displayAssignments(Model model,HttpSession session){
+        User loggedUser =  getUserFromSession(session);
+        Optional<User> myUser = userRepository.findById(loggedUser.getId());
+        if (myUser.isPresent()) {
+            User user = (User) myUser.get();
+            model.addAttribute("assignments",user.getAssignments());
+            return "employee/editAssignments";
+        }
         return "employee/assignments";
     }
     @PostMapping("assignments")
-    public String processAssignments(@ModelAttribute Assignments assignments,HttpSession session){
-        User user = getUserFromSession(session);
-        assignments.setUser(user);
-        assignmentsRepository.save(assignments);
+    public String processAssignments(@ModelAttribute Assignments assignments,HttpSession session,@RequestParam int noOfAssignments,@RequestParam int id){
+        Optional<Assignments> myUser = assignmentsRepository.findById(id);
+        if (myUser.isPresent()) {
+            Assignments editedUser = (Assignments) myUser.get();
+            User user = getUserFromSession(session);
+            editedUser.setUser(user);
+            editedUser.setNoOfAssignments(noOfAssignments);
+            assignmentsRepository.save(editedUser);
+        }
+        else {
+            User user = getUserFromSession(session);
+            assignments.setUser(user);
+            assignmentsRepository.save(assignments);
+        }
         return "redirect:";
+    }
+    @GetMapping("view")
+    public String viewInformation(HttpSession session,Model model){
+        User loggedUser = getUserFromSession(session);
+        model.addAttribute("user",loggedUser);
+        model.addAttribute("projects",employeeProjectRepository.findAll());
+        return "employee/view";
     }
 }
