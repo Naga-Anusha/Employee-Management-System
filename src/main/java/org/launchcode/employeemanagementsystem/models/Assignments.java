@@ -1,5 +1,6 @@
 package org.launchcode.employeemanagementsystem.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -8,8 +9,8 @@ public class Assignments extends AbstractEntity{
 
     private int noOfAssignments;
 
-    @OneToOne
-    User user;
+    @OneToOne(cascade = CascadeType.ALL)
+    private User user;
 
     public Assignments() { }
 

@@ -11,7 +11,7 @@
                 <table class="table" th:each="employee : ${employees}"  th:if="${employee.role.equals('employee')}">
                     <tr>
                         <td><a th:href="@{'/admin/view/' + ${employee.username}}"  th:text="${employee.username}"></a></td>
-                        <td><a th:href="@{'/admin/performance/'+${employee.username}}">Add Performance</a></td>
+
                     </tr>
                 </table>
                 </div>

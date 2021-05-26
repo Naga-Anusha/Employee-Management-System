@@ -25,6 +25,9 @@ public class User extends AbstractEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private UserDetails userDetails;
 
+    @OneToOne(mappedBy = "user")
+    private Assignments assignments;
+
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public User() { }
@@ -60,5 +63,12 @@ public class User extends AbstractEntity {
         this.userDetails = userDetails;
     }
 
+    public Assignments getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(Assignments assignments) {
+        this.assignments = assignments;
+    }
 }
 

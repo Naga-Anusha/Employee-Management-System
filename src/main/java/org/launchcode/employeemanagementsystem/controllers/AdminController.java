@@ -106,9 +106,8 @@ public class AdminController {
         return "redirect:";
     }
 
-    @GetMapping("performance/{username}")
-        public String addPerformance(@PathVariable String username){
-
+    @GetMapping("performance")
+        public String addPerformance(){
             return "admin/performance";
         }
 

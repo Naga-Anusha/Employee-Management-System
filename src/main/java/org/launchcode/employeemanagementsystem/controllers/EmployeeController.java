@@ -1,7 +1,9 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
+import org.launchcode.employeemanagementsystem.data.AssignmentsRepository;
 import org.launchcode.employeemanagementsystem.data.UserDetailsRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
+import org.launchcode.employeemanagementsystem.models.Assignments;
 import org.launchcode.employeemanagementsystem.models.User;
 import org.launchcode.employeemanagementsystem.models.UserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,13 @@ public class EmployeeController {
     @Autowired
     UserDetailsRepository userDetailsRepository;
 
+    @Autowired
+    AssignmentsRepository assignmentsRepository;
+
     private static final String userSessionKey = "user";
-    @GetMapping
-    public String index(Model model, HttpSession session) {
-        Integer userId = (Integer)session.getAttribute(userSessionKey);
+
+    public User getUserFromSession(HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
         if (userId == null) {
             return null;
         }
@@ -36,7 +41,11 @@ public class EmployeeController {
             return null;
         }
 
-        User loggedUser =  user.get();
+        return user.get();
+    }
+    @GetMapping
+    public String index(Model model, HttpSession session) {
+        User loggedUser =  getUserFromSession(session);
         model.addAttribute("details",userRepository.findByUsername(loggedUser.getUsername()));
         return "employee/landingPage";
     }
@@ -66,5 +75,12 @@ public class EmployeeController {
     @GetMapping("assignments")
     public String displayAssignments(){
         return "employee/assignments";
+    }
+    @PostMapping("assignments")
+    public String processAssignments(@ModelAttribute Assignments assignments,HttpSession session){
+        User user = getUserFromSession(session);
+        assignments.setUser(user);
+        assignmentsRepository.save(assignments);
+        return "redirect:";
     }
 }
