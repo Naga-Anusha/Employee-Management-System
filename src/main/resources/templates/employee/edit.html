@@ -12,6 +12,7 @@
                     <form action="/employee/edit" method="post">
                         <p th:text="${errorMsg}" style="color:red;"></p>
                         <input type="hidden" th:value="${employee.userDetails.id}" name="id" />
+                        <input type="hidden" th:value="${employee.username}" name="username" />
                         <div class="form-group">
                             <label>First Name:<input type="text" name="firstName"  th:value=${employee.userDetails.firstName} class="form-control"/></label>
                             <p class="error" th:errors="${employee.userDetails.firstName}"></p>

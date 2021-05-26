@@ -1,5 +1,6 @@
 package org.launchcode.employeemanagementsystem.controllers;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.launchcode.employeemanagementsystem.data.UserDetailsRepository;
 import org.launchcode.employeemanagementsystem.data.UserRepository;
 import org.launchcode.employeemanagementsystem.models.User;
@@ -10,8 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -24,12 +27,23 @@ public class EmployeeController {
     @Autowired
     UserDetailsRepository userDetailsRepository;
 
-
+    private static final String userSessionKey = "user";
     @GetMapping
     public String index(Model model, HttpSession session) {
-        String sessionId = session.getId();
-        int id = Integer.parseInt(sessionId);
-        model.addAttribute("details",userRepository.findById(id));
+        Integer userId = (Integer)session.getAttribute(userSessionKey);
+        if (userId == null) {
+            return null;
+        }
+
+        Optional<User> user = userRepository.findById(userId);
+
+        if (user.isEmpty()) {
+            return null;
+        }
+
+        User loggedUser =  user.get();
+        //model.addAttribute("details",userRepository.findByUsername(loginFormDTO.getUsername()));
+        model.addAttribute("details",userRepository.findByUsername(loggedUser.getUsername()));
         return "employee/landingPage";
     }
 

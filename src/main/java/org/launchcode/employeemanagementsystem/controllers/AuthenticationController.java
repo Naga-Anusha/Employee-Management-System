@@ -144,11 +144,11 @@ public class AuthenticationController {
         setUserInSession(request.getSession(), theUser);
         if(loginFormDTO.getRole().equals("admin")){
             model.addAttribute("employees",userRepository.findAll());
-            return "admin/landingPage";
+            return "redirect:/admin";
         }
-        else if(loginFormDTO.getRole().equals("employee")){
+       else if(loginFormDTO.getRole().equals("employee")){
             model.addAttribute("details",userRepository.findByUsername(loginFormDTO.getUsername()));
-            return "employee/landingPage";
+            return "redirect:/employee";
         }
         return "redirect:/login";
     }
