@@ -106,10 +106,4 @@ public class AdminController {
         return "redirect:";
     }
 
-    @GetMapping("performance")
-        public String addPerformance(Model model){
-        model.addAttribute("users",userRepository.findAll());
-            return "admin/performance";
-        }
-
 }

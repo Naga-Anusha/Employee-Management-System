@@ -9,8 +9,7 @@ public class Assignments extends AbstractEntity{
 
     private int noOfAssignments;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+    private int userId;
 
     public Assignments() { }
 
@@ -26,11 +25,11 @@ public class Assignments extends AbstractEntity{
         this.noOfAssignments = noOfAssignments;
     }
 
-    public User getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

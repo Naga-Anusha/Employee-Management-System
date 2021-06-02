@@ -21,6 +21,14 @@
                         <td>Projects</td>
                         <td th:each="project:${projects}" th:if="${project.user.id == user.id}" th:text="${project.project.projectName}"></td>
                     </tr>
+                    <tr>
+                        <td>Performance</td>
+                        <td th:if="${assignment.noOfAssignments == null}">No Performance</td>
+                        <td  th:if="${assignment.noOfAssignments <= 3}">25%</td>
+                        <td  th:if="${(assignment.noOfAssignments > 3) and (assignment.noOfAssignments <= 6)}">50%</td>
+                        <td  th:if="${(assignment.noOfAssignments > 6) and (assignment.noOfAssignments <= 8)}">75%</td>
+                        <td  th:if="${(assignment.noOfAssignments > 8) and (assignment.noOfAssignments <= 10)}">90%</td>
+                    </tr>
                     </thead>
                 </table>
             </div>

@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -78,30 +80,13 @@ public class EmployeeController {
     }
     @GetMapping("assignments")
     public String displayAssignments(Model model,HttpSession session){
-        User loggedUser =  getUserFromSession(session);
-        Optional<User> myUser = userRepository.findById(loggedUser.getId());
-        if (myUser.isPresent()) {
-            User user = (User) myUser.get();
-            model.addAttribute("assignments",user.getAssignments());
-            return "employee/editAssignments";
-        }
         return "employee/assignments";
     }
     @PostMapping("assignments")
-    public String processAssignments(@ModelAttribute Assignments assignments,HttpSession session,@RequestParam int noOfAssignments,@RequestParam int id){
-        Optional<Assignments> myUser = assignmentsRepository.findById(id);
-        if (myUser.isPresent()) {
-            Assignments editedUser = (Assignments) myUser.get();
-            User user = getUserFromSession(session);
-            editedUser.setUser(user);
-            editedUser.setNoOfAssignments(noOfAssignments);
-            assignmentsRepository.save(editedUser);
-        }
-        else {
-            User user = getUserFromSession(session);
-            assignments.setUser(user);
+    public String processAssignments(@ModelAttribute Assignments assignments,HttpSession session,@RequestParam int noOfAssignments){
+        User user = getUserFromSession(session);
+            assignments.setUserId(user.getId());
             assignmentsRepository.save(assignments);
-        }
         return "redirect:";
     }
     @GetMapping("view")
@@ -109,6 +94,21 @@ public class EmployeeController {
         User loggedUser = getUserFromSession(session);
         model.addAttribute("user",loggedUser);
         model.addAttribute("projects",employeeProjectRepository.findAll());
+        Iterable<Assignments> assignments = new ArrayList<>();
+        List<Assignments> userAssignments = new ArrayList<>();
+        assignments = assignmentsRepository.findAll();
+        for (Assignments assignment:assignments) {
+            if(assignment.getUserId() == loggedUser.getId()){
+                userAssignments.add(assignment);
+            }
+        }
+        Assignments finalAssignment = userAssignments.get(0);
+        for(int i=1; i<userAssignments.size();i++){
+            if(userAssignments.get(i).getId() > finalAssignment.getId()){
+                finalAssignment = userAssignments.get(i);
+            }
+        }
+        model.addAttribute("assignment",finalAssignment);
         return "employee/view";
     }
 }
